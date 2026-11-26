@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merpati Air — Ridge Run</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="game">
+  <canvas id="scene" width="1280" height="720"></canvas>
+
+  <div id="hud" class="hidden">
+    <div id="hud-top">
+      <div class="hud-box"><span class="hud-label">ALT</span><span id="hud-alt" class="hud-value">0</span><span class="hud-unit">ft</span></div>
+      <div class="hud-box"><span class="hud-label">SPD</span><span id="hud-spd" class="hud-value">0</span><span class="hud-unit">kt</span></div>
+      <div class="hud-box"><span class="hud-label">HDG</span><span id="hud-hdg" class="hud-value">090</span><span class="hud-unit">°</span></div>
+      <div class="hud-box"><span class="hud-label">V/S</span><span id="hud-vs" class="hud-value">0</span><span class="hud-unit">fpm</span></div>
+      <div class="hud-box"><span class="hud-label">SKOR</span><span id="hud-score" class="hud-value">0</span></div>
+    </div>
+    <div id="compass"><div id="compass-strip"></div><div id="compass-needle">▲</div></div>
+    <div id="objective">—</div>
+    <div id="warning" class="hidden"></div>
+    <div id="panel">
+      <div id="attitude"><div id="attitude-ball"></div><div id="attitude-fixed">—</div></div>
+      <div class="gauge"><span class="gauge-label">THR</span><div class="gauge-bar"><div id="gauge-thr" class="gauge-fill thr"></div></div><span id="gauge-thr-v" class="gauge-v">0%</span></div>
+      <div class="gauge"><span class="gauge-label">FUEL</span><div class="gauge-bar"><div id="gauge-fuel" class="gauge-fill fuel"></div></div><span id="gauge-fuel-v" class="gauge-v">100%</span></div>
+      <div class="gauge"><span class="gauge-label">DMG</span><div class="gauge-bar"><div id="gauge-dmg" class="gauge-fill dmg"></div></div><span id="gauge-dmg-v" class="gauge-v">0%</span></div>
+      <div id="throttle-lever"><div id="throttle-knob"></div></div>
+    </div>
+    <div id="toast" class="hidden"></div>
+  </div>
+
+  <div id="menu" class="overlay">
+    <h1>MERPATI AIR</h1>
+    <p class="subtitle">Ridge Run — game terbang di atas lembah Merpati</p>
+    <div id="mission-list">
+      <button class="mission" data-mission="rings">
+        <b>1 · Cincin Langit</b><span>Terbang melewati 8 cincin sebelum bahan bakar habis.</span>
+      </button>
+      <button class="mission" data-mission="landing">
+        <b>2 · Landasan Merpati</b><span>Turun perlahan dan mendarat mulus di runway 09.</span>
+      </button>
+      <button class="mission" data-mission="canyon">
+        <b>3 · Ngarai Badai</b><span>Lewati 6 gerbang di antara tebing — jangan sentuh batu.</span>
+      </button>
+    </div>
+    <p class="controls">W/S throttle · A/D atau ←/→ belok · ↑/↓ pitch · Spasi rem udara · P jeda · M suara · R ulangi</p>
+    <p class="hint">Keyboard + mouse. Semua file lokal, tanpa internet.</p>
+  </div>
+
+  <div id="debrief" class="overlay hidden">
+    <h1 id="debrief-title">MISI SELESAI</h1>
+    <p id="debrief-text"></p>
+    <div id="debrief-stats"></div>
+    <button id="debrief-again">Terbang lagi (R)</button>
+    <button id="debrief-menu">Pilih misi lain</button>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

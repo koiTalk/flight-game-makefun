@@ -1,0 +1,83 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: #0b1520; overflow: hidden; }
+body { font-family: "Segoe UI", system-ui, sans-serif; color: #eaf4ff; }
+#game { position: relative; width: 100vw; height: 100vh; }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hidden { display: none !important; }
+
+/* ---- HUD ---- */
+#hud { position: absolute; inset: 0; pointer-events: none; }
+#hud-top { position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; }
+.hud-box { background: rgba(6, 20, 32, .72); border: 1px solid rgba(120, 220, 255, .45);
+  border-radius: 8px; padding: 6px 12px; text-align: center; min-width: 86px;
+  box-shadow: 0 0 12px rgba(60, 180, 255, .25); }
+.hud-label { display: block; font-size: 10px; letter-spacing: 2px; color: #8fd8ff; }
+.hud-value { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; color: #fff; }
+.hud-unit { font-size: 11px; color: #9fc6dd; margin-left: 2px; }
+#compass { position: absolute; top: 76px; left: 50%; transform: translateX(-50%);
+  width: 420px; height: 26px; overflow: hidden; background: rgba(6, 20, 32, .6);
+  border: 1px solid rgba(120, 220, 255, .35); border-radius: 6px; }
+#compass-strip { position: absolute; top: 3px; left: 0; white-space: nowrap;
+  font-size: 15px; letter-spacing: 6px; color: #cfeeff; font-variant-numeric: tabular-nums; }
+#compass-needle { position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+  color: #ffb340; font-size: 14px; }
+#objective { position: absolute; top: 112px; left: 50%; transform: translateX(-50%);
+  background: rgba(6, 20, 32, .6); border-radius: 6px; padding: 5px 14px;
+  font-size: 14px; color: #ffe9b0; border: 1px solid rgba(255, 210, 110, .35); }
+#warning { position: absolute; top: 150px; left: 50%; transform: translateX(-50%);
+  font-size: 26px; font-weight: 800; letter-spacing: 3px; color: #ff5347;
+  text-shadow: 0 0 14px rgba(255, 60, 40, .8); animation: blink 0.5s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+#toast { position: absolute; top: 44%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 34px; font-weight: 800; color: #7dffb0; text-shadow: 0 0 18px rgba(0, 0, 0, .7); }
+
+/* ---- Instrument panel ---- */
+#panel { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%);
+  display: flex; gap: 16px; align-items: center;
+  background: rgba(8, 18, 28, .78); border: 1px solid rgba(120, 220, 255, .4);
+  border-radius: 12px; padding: 10px 18px; box-shadow: 0 0 18px rgba(40, 160, 255, .3); }
+#attitude { position: relative; width: 74px; height: 74px; border-radius: 50%;
+  overflow: hidden; border: 3px solid #22384a; background: #79b5e0; }
+#attitude-ball { position: absolute; left: -50%; top: -50%; width: 200%; height: 200%;
+  background: linear-gradient(#2f7fc4 0 49.5%, #7a5a34 50.5% 100%); }
+#attitude-fixed { position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; color: #ffb340; font-weight: 800; font-size: 20px;
+  text-shadow: 0 0 4px #000; }
+.gauge { display: flex; flex-direction: column; gap: 3px; width: 120px; }
+.gauge-label { font-size: 10px; letter-spacing: 2px; color: #8fd8ff; }
+.gauge-bar { height: 12px; background: #12283a; border-radius: 6px; overflow: hidden;
+  border: 1px solid rgba(140, 220, 255, .3); }
+.gauge-fill { height: 100%; width: 50%; transition: width .15s linear; }
+.gauge-fill.thr { background: linear-gradient(90deg, #2fae6e, #8dff6a); }
+.gauge-fill.fuel { background: linear-gradient(90deg, #e8a13a, #ffd76a); }
+.gauge-fill.dmg { background: linear-gradient(90deg, #c23b2e, #ff7a5c); }
+.gauge-v { font-size: 12px; color: #d7ecff; font-variant-numeric: tabular-nums; }
+#throttle-lever { width: 22px; height: 74px; background: #12283a; border-radius: 8px;
+  border: 1px solid rgba(140, 220, 255, .3); position: relative; }
+#throttle-knob { position: absolute; left: 2px; right: 2px; height: 12px; bottom: 4px;
+  background: #ffb340; border-radius: 4px; }
+
+/* ---- Overlays ---- */
+.overlay { position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px;
+  background: linear-gradient(rgba(6, 16, 28, .55), rgba(6, 16, 28, .82)); text-align: center; }
+.overlay h1 { font-size: 54px; letter-spacing: 8px; color: #fff;
+  text-shadow: 0 0 24px rgba(80, 200, 255, .7); }
+.subtitle { font-size: 18px; color: #bfe6ff; }
+#mission-list { display: flex; flex-direction: column; gap: 10px; width: 480px; max-width: 92vw; }
+.mission { pointer-events: auto; cursor: pointer; text-align: left; padding: 12px 16px;
+  background: rgba(10, 34, 52, .85); border: 1px solid rgba(120, 220, 255, .5);
+  border-radius: 10px; color: #eaf4ff; }
+.mission:hover { background: rgba(24, 68, 100, .9); border-color: #8fd8ff; }
+.mission b { display: block; font-size: 18px; margin-bottom: 3px; color: #ffd76a; }
+.mission span { font-size: 13px; color: #cfe8ff; }
+.controls { font-size: 14px; color: #d7ecff; background: rgba(6, 20, 32, .6);
+  padding: 8px 14px; border-radius: 8px; }
+.hint { font-size: 12px; color: #8fb4c9; }
+#debrief-stats { font-size: 16px; line-height: 1.8; color: #eaf4ff;
+  background: rgba(6, 20, 32, .7); border: 1px solid rgba(120, 220, 255, .35);
+  border-radius: 10px; padding: 12px 26px; }
+#debrief button { pointer-events: auto; cursor: pointer; font-size: 16px; padding: 10px 22px;
+  border-radius: 8px; border: 1px solid #8fd8ff; background: #123a55; color: #fff; }
+#debrief button:hover { background: #1d5a84; }
