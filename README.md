@@ -1,5 +1,9 @@
 # Merpati Air: Ridge Run
 
+[![make.fun bounty](https://make.fun/badge/best-flight-game-20261126-0057.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
+[![rank](https://make.fun/badge/best-flight-game-20261126-0057/koiTalk/flight-game-makefun/rank.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
+[![reward](https://make.fun/badge/best-flight-game-20261126-0057/koiTalk/flight-game-makefun/reward.svg)](https://make.fun/bounty/best-flight-game-20261126-0057)
+
 An original flight game built for the make.fun "Make the best flight game" bounty
 (best-flight-game-20261126-0057).
 
