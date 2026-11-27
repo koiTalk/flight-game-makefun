@@ -2,14 +2,15 @@
 html, body { height: 100%; background: #0b1520; overflow: hidden; }
 body { font-family: "Segoe UI", system-ui, sans-serif; color: #eaf4ff; }
 #game { position: relative; width: 100vw; height: 100vh; }
-#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
 .hidden { display: none !important; }
 
 /* ---- HUD ---- */
-#hud { position: absolute; inset: 0; pointer-events: none; }
+/* HUD DOM selalu di atas canvas (awan tidak boleh menutupi HUD). */
+#hud { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
 #hud-top { position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 10px; }
-.hud-box { background: rgba(6, 20, 32, .72); border: 1px solid rgba(120, 220, 255, .45);
+.hud-box { background: rgba(6, 20, 32, .88); border: 1px solid rgba(120, 220, 255, .45);
   border-radius: 8px; padding: 6px 12px; text-align: center; min-width: 86px;
   box-shadow: 0 0 12px rgba(60, 180, 255, .25); }
 .hud-label { display: block; font-size: 10px; letter-spacing: 2px; color: #8fd8ff; }
@@ -41,6 +42,9 @@ body { font-family: "Segoe UI", system-ui, sans-serif; color: #eaf4ff; }
   overflow: hidden; border: 3px solid #22384a; background: #79b5e0; }
 #attitude-ball { position: absolute; left: -50%; top: -50%; width: 200%; height: 200%;
   background: linear-gradient(#2f7fc4 0 49.5%, #7a5a34 50.5% 100%); }
+/* Garis horizon putih di tengah bola — ikut berputar/bergeser bersama bola. */
+#attitude-ball::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - 1px);
+  height: 2px; background: rgba(255,255,255,0.9); }
 #attitude-fixed { position: absolute; inset: 0; display: flex; align-items: center;
   justify-content: center; color: #ffb340; font-weight: 800; font-size: 20px;
   text-shadow: 0 0 4px #000; }

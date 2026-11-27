@@ -71,8 +71,9 @@ export class Hud {
     const px = this.pxPerChar || 14.1;
     const centerStripX = (144 + (plane.heading / 10) * 4 + 2) * px;
     this.strip.style.left = `${210 - centerStripX}px`;
-    // Attitude: bola berputar lawan bank, bergeser mengikuti pitch.
-    this.ball.style.transform = `translateY(${plane.pitch * 2.4}px) rotate(${-plane.bank}deg)`;
+    // Attitude: bola berputar lawan bank, bergeser mengikuti pitch —
+    // geser dijepit ±28px agar garis horizon SELALU terlihat di lingkaran.
+    this.ball.style.transform = `translateY(${Math.max(-28, Math.min(28, plane.pitch * 2.4))}px) rotate(${-plane.bank}deg)`;
     this.thr.style.width = `${plane.throttle}%`;
     this.thrV.textContent = `${Math.round(plane.throttle)}%`;
     this.fuel.style.width = `${Math.max(0, plane.fuel)}%`;

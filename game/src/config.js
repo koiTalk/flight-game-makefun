@@ -18,7 +18,7 @@ export const CONFIG = {
   worldSize: 9000,       // meter, sisi area terbang (dibatasi lembut)
   runwayHeading: 90,     // derajat — runway 09, menghadap timur
   runwayLength: 900,     // meter
-  runwayWidth: 60,       // meter
+  runwayWidth: 120,      // meter — strip aspal lebar agar terbaca dari jauh
 };
 
 // Setiap misi: titik awal, bahan bakar, dan daftar target.
